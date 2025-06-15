@@ -1,12 +1,15 @@
-// Update this page (the content is just a fallback if you fail to update the page)
+
+// Add chatbot to the root page
+import Chatbot from "@/components/Chatbot";
 
 const Index = () => {
   return (
-    <div className="min-h-screen flex items-center justify-center bg-background">
+    <div className="min-h-screen flex items-center justify-center bg-background relative">
       <div className="text-center">
-        <h1 className="text-4xl font-bold mb-4">Welcome to Your Blank App</h1>
-        <p className="text-xl text-muted-foreground">Start building your amazing project here!</p>
+        <h1 className="text-4xl font-bold mb-4">Welcome to Your Flipkart Chatbot Demo</h1>
+        <p className="text-xl text-muted-foreground">Click the Rufus chat bubble below to start a conversation. Try voice input!</p>
       </div>
+      <Chatbot />
     </div>
   );
 };
