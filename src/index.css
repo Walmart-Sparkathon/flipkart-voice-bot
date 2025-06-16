@@ -54,7 +54,10 @@
   }
 
   .dark {
-    --background: 222.2 84% 4.9%;
+    --background: #1e293b;
+     --primary: #0071ce;            
+  --accent: #ffc220;          
+  --sidebar-background: #1e293b;
     --foreground: 210 40% 98%;
 
     --card: 222.2 84% 4.9%;
@@ -99,5 +102,66 @@
 
   body {
     @apply bg-background text-foreground;
+  }
+}
+@layer utilities {
+  /* Add these new animations */
+  .animate-fade-in {
+    animation: fadeIn 0.8s ease-out forwards;
+  }
+  
+  .animate-fade-in-up {
+    animation: fadeInUp 0.8s ease-out forwards;
+  }
+  
+  .animate-bounce-slow {
+    animation: bounceSlow 2s infinite;
+  }
+  
+  @keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+  }
+  
+  @keyframes fadeInUp {
+    from { 
+      opacity: 0;
+      transform: translateY(20px);
+    }
+    to { 
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+  
+  @keyframes float {
+    0%, 100% { transform: translateY(0) rotate(0deg); }
+    50% { transform: translateY(-20px) rotate(5deg); }
+  }
+  
+  @keyframes bounceSlow {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-10px); }
+  }
+  
+  .delay-100 {
+    animation-delay: 100ms;
+  }
+  
+  /* Gradient text */
+  .text-gradient {
+    background-clip: text;
+    -webkit-background-clip: text;
+    color: transparent;
+  }
+  
+  /* Pulse animation for attention */
+  @keyframes pulse {
+    0%, 100% { transform: scale(1); }
+    50% { transform: scale(1.05); }
+  }
+  
+  .animate-pulse {
+    animation: pulse 2s infinite;
   }
 }

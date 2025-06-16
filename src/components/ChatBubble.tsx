@@ -10,14 +10,14 @@ type ChatBubbleProps = {
 };
 
 const botColors = {
-  background: "bg-blue-100",
+  background: "bg-blue-50",
   text: "text-blue-900",
-  border: "border-blue-400",
+  border: "border-blue-300",
 };
 const userColors = {
-  background: "bg-yellow-100",
+  background: "bg-yellow-50",
   text: "text-yellow-900",
-  border: "border-yellow-400",
+  border: "border-yellow-300",
 };
 
 const ChatBubble: React.FC<ChatBubbleProps> = ({ message, sender }) => {
@@ -41,7 +41,7 @@ const ChatBubble: React.FC<ChatBubbleProps> = ({ message, sender }) => {
           sender === "user" ? "rounded-br-none shadow-md" : "rounded-bl-none shadow"
         )}
         tabIndex={0}
-        aria-label={`${sender === "bot" ? "Rufus: " : "You: "}${message}`}
+        aria-label={`${sender === "bot" ? "Milo: " : "You: "}${message}`}
       >
         {message}
       </div>

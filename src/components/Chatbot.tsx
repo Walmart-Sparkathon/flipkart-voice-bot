@@ -4,8 +4,9 @@ import ChatBubble from "./ChatBubble";
 import VoiceButton from "./VoiceButton";
 import { X, Bot, ChevronDown } from "lucide-react";
 
-const FLIPKART_BLUE = "#2874f0";
-const FLIPKART_YELLOW = "#ffe11b";
+const WALMART_BLUE = "#0071ce";       // Primary blue
+const WALMART_LIGHT_BLUE = "#48a9ff";  // Secondary blue
+const WALMART_YELLOW = "#ffc220";      // Accent yellow
 
 type Message = {
   id: number;
@@ -13,7 +14,7 @@ type Message = {
   sender: "user" | "bot";
 };
 
-const BOT_WELCOME = "Hi, I'm Rufus! How can I assist you with Flipkart products today?";
+const BOT_WELCOME = "Hi, I'm Milo! How can I assist you with Walmart products today?";
 // For the demo, mock a reply (can be API-integrated later).
 function getBotReply(userText: string) {
   return new Promise<string>((resolve) => {
@@ -24,13 +25,13 @@ function getBotReply(userText: string) {
         );
       } else if (/order|track/i.test(userText)) {
         resolve(
-          "To track your order, please visit 'My Orders' from your Flipkart account. Shall I open the orders page for you?"
+          "To track your order, please visit 'My Orders' from your Walmart account. Shall I open the orders page for you?"
         );
       } else if (/hi|hello|hey/i.test(userText)) {
         resolve("Hello! How can I help you find the right product?");
       } else {
         resolve(
-          "I'm here to help! You can ask about products, deals, orders, or anything else related to shopping on Flipkart."
+          "I'm here to help! You can ask about products, deals, orders, or anything else related to shopping on Walmart."
         );
       }
     }, 1100);
@@ -126,15 +127,16 @@ const Chatbot: React.FC = () => {
   if (!open)
     return (
       <button
-        className="fixed bottom-7 right-7 bg-white border-2 border-blue-200 shadow-lg rounded-full px-4 py-3 flex items-center gap-2 cursor-pointer hover:scale-105 transition-transform z-50 animate-scale-in"
+        className="fixed bottom-7 centre bg-white border-2 border-blue-200 shadow-lg rounded-full px-4 py-3 flex items-center gap-2 cursor-pointer hover:scale-105 transition-transform z-50 animate-scale-in"
         style={{ boxShadow: "0 4px 18px 0 rgba(40,116,240,0.10)" }}
         onClick={() => setOpen(true)}
-        aria-label="Chat with Rufus"
+        aria-label="Chat with Milo"
       >
         <Bot className="text-blue-400 w-7 h-7" />
-        <span className="font-semibold text-blue-900 text-sm">Need help? Ask Rufus</span>
+        <span className="font-semibold text-blue-900 text-sm">Need help? Ask Milo</span>
       </button>
     );
+    
 
   // Chatbot main window
   return (
@@ -148,12 +150,26 @@ const Chatbot: React.FC = () => {
       }}
     >
       {/* Header bar */}
+      <div 
+  className="flex items-center gap-2 px-4 py-3 border-b border-blue-200"
+  style={{ background: WALMART_BLUE }}
+>
+  <img 
+    src="/walmart-logo.jpg" 
+    alt="Walmart" 
+    className="w-12 h-12 mr-4" 
+  />
+  <span className="text-white font-bold text-lg tracking-wide select-none">
+    Walmart Assistant
+  </span>
+  
+</div>
       <div
         className="flex items-center gap-2 px-4 py-3 border-b border-blue-200"
-        style={{ background: FLIPKART_BLUE }}
+        style={{ background: WALMART_BLUE}}
       >
         <Bot className="w-7 h-7 text-white mr-1" />
-        <span className="text-white font-bold text-lg tracking-wide select-none">Rufus</span>
+        <span className="text-white font-bold text-lg tracking-wide select-none">Milo</span>
         <span className="ml-auto flex gap-2">
           <button
             className="hover:bg-blue-200/40 p-1 rounded transition-colors"
@@ -190,7 +206,7 @@ const Chatbot: React.FC = () => {
           </div>
         )}
       </div>
-      {/* Input area */}
+      
       <div className="flex items-end gap-2 px-3 py-2 border-t border-blue-200 bg-white">
         <textarea
           className="flex-grow resize-none px-3 py-2 rounded-lg border border-blue-200 shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-400 text-base min-h-[38px] max-h-[76px] bg-blue-50"
@@ -202,6 +218,8 @@ const Chatbot: React.FC = () => {
           aria-label="Type your message"
           rows={1}
         />
+        
+
         <VoiceButton
           listening={listening}
           onClick={() => setListening(l => !l)}
@@ -209,7 +227,7 @@ const Chatbot: React.FC = () => {
         />
         <button
           className="ml-2 bg-blue-500 hover:bg-blue-600 text-white font-bold px-4 py-2 rounded shadow transition-all flex items-center disabled:bg-blue-300"
-          style={{ background: input.trim() ? FLIPKART_BLUE : "#b8dafc" }}
+          style={{ background: input.trim() ? WALMART_BLUE : "#b8dafc" }}
           onClick={handleUserSend}
           disabled={loading || !input.trim()}
           aria-label="Send message"
@@ -221,5 +239,6 @@ const Chatbot: React.FC = () => {
     </div>
   );
 };
+
 
 export default Chatbot;
